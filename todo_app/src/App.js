@@ -1,8 +1,9 @@
-import React, { useState }from 'react';
+import React, { useState, useEffect }from 'react';
 import Todo from './Todo';
-import { Button, FormControl, Input, InputLabel } from '@material-ui/core';
+import { Button, FormControl, input, InputLabel } from '@material-ui/core';
 import './App.css';
 import db from './firebase';
+import firebase from 'firebase'
 
 function App() {
   const [todos, setTodos] = useState(['abc','def' ]);
@@ -12,7 +13,6 @@ function App() {
   useEffect(() =>{
     // this line of code ..fires when the app.js loads
     db.collection('todos').onSnapshot(snapshot => {
-      console.log(snapshot.docs.map(doc => doc.data()));
       setTodos(snapshot.docs.map(doc => doc.data().todo))
     })
   }, []);
@@ -20,8 +20,12 @@ function App() {
   const addTodo =(event) => {
     // this will work when we click the button
     event.preventDefault();
-    console.log('👽', 'im working');
-    setTodos([...todos, input]); //this will add to the input button
+
+    db.collection('todos').add({
+      todo: input,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    })
+
     setInput(''); // clears up the input after clicking add todo button
   }
 
@@ -30,7 +34,7 @@ function App() {
 
       <h1>Hello Devs 🚀</h1>
 
-      <form>
+    <form>
 
       <FormControl>
         <InputLabel> ✅ Write todo</InputLabel>
@@ -40,12 +44,11 @@ function App() {
       <Button disabled={!input} type="submit" onClick={addTodo} variant="contained" color="primary">
       Add to do 
       </Button>
-      </form>
+    </form>
 
     <ul>
       {todos.map(todo => (
         <Todo text = {todo}/>
-        // <li>{todo}</li>
       ))}
     </ul>
 
