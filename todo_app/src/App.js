@@ -12,8 +12,8 @@ function App() {
   // when the app loads, we need to listen to the database and fetch new todos as they get added/removed
   useEffect(() =>{
     // this line of code ..fires when the app.js loads
-    db.collection('todos').onSnapshot(snapshot => {
-      setTodos(snapshot.docs.map(doc => doc.data().todo))
+    db.collection('todos').orderBy('timestamp','desc').onSnapshot(snapshot => {
+      setTodos(snapshot.docs.map(doc => ({id: doc.id ,todo: doc.data().todo})))
     })
   }, []);
 
@@ -48,7 +48,7 @@ function App() {
 
     <ul>
       {todos.map(todo => (
-        <Todo text = {todo}/>
+        <Todo todo={todo}/>
       ))}
     </ul>
 
