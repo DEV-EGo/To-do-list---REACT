@@ -18,7 +18,7 @@ function Todo(props) {
             onClose={e => setOpen(false)}
         >
             <div> 
-                <h1>I am a modal</h1>
+                <h1>I am a modal this works</h1>
                 <Button onClick={e => setOpen(false)}></Button>
             </div>
         </Modal>
