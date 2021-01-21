@@ -1,15 +1,13 @@
 import React from 'react'
 import './Todo.css';
-import { List, ListItem, ListItemAvatar, ListItemText, Avatar } from '@material-ui/core'
+import { List, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core'
 
 function Todo(props) {
     return (
         <List>
             <ListItem>
                 <ListItemAvatar>
-                    {/* <Avatar>
-                        <ImageIcon/>
-                    </Avatar> */}
+                   
                 </ListItemAvatar>
                     <ListItemText primary= {props.text} secondary="Dummy deadline" />
             </ListItem>
