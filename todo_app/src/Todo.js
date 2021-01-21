@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Todo.css';
-import {  List, Button, ListItemAvatar, ListItem, ListItemText } from '@material-ui/core';
+import {  List, Button, ListItemAvatar, ListItem, ListItemText, Modal } from '@material-ui/core';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import db from './firebase.js';
 
@@ -13,13 +13,13 @@ function Todo(props) {
 
     return (
         <>
-        <Modal>
+        <Modal
             open= {open}
-            onClose={handleClose}
-
+            onClose={e => setOpen(false)}
+        >
             <div> 
                 <h1>I am a modal</h1>
-                <button onClick={e => setOpen(false)}></button>
+                <Button onClick={e => setOpen(false)}></Button>
             </div>
         </Modal>
 
@@ -29,9 +29,8 @@ function Todo(props) {
                 </ListItemAvatar>
                 <ListItemText primary= {props.todo.todo} secondary="Dummy deadline" />
             </ListItem>
-            <button onClick={e => setOpen(true)}>Edit</button>
-
-        <DeleteForeverIcon onClick={event => db.collection('todos').doc(props.todo.id).delete()}/>
+            <Button onClick={e => setOpen(true)}>Edit</Button>
+            <DeleteForeverIcon onClick={event => db.collection('todos').doc(props.todo.id).delete()}/>
         </List>
         </>
     )
