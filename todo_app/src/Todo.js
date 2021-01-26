@@ -30,7 +30,7 @@ function Todo(props) {
             open= {open}
             onClose={e => setOpen(false)}
         >
-            <div> 
+            <div className={classes.paper}> 
                 <h1>I am a modal this works</h1>
                 <Button onClick={e => setOpen(false)}></Button>
             </div>
