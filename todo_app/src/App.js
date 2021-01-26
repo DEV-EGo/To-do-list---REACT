@@ -32,7 +32,7 @@ function App() {
   return (
     <div className="App">
 
-      <h1>Hello Devs 🚀</h1>
+      <h1>Todo List 📝 </h1>
 
     <form>
 
