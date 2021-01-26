@@ -19,11 +19,16 @@ const useStyles = makeStyles((theme) => ({
 function Todo(props) {
     const classes = useStyles();
     const [open,setOpen] = useState(false);
+    const [input,setInput] = useState('');
 
     const handleOpen = () => {
         setOpen(true);
     };
 
+    const UpdateTodo = () => {
+        // update the todo with the new input text
+        setOpen(false);
+    }
     return (
         <>
         <Modal
@@ -32,7 +37,8 @@ function Todo(props) {
         >
             <div className={classes.paper}> 
                 <h1>I am a modal this works</h1>
-                <Button onClick={e => setOpen(false)}></Button>
+                <input value = {input} onChange= {event => setInput(event.target.value)}/> 
+                <Button onClick={e => setOpen(false)}>Update Todo</Button>
             </div>
         </Modal>
 
