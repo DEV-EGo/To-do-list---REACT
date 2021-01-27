@@ -7,4 +7,4 @@ Hosted online (firebase),
 Firebase is used as a Real time database.
 React Hooks were used.
 In order to run this project locally within your machine CD into the SRC file and run "npm start".
-![](todo_App/ScreenShot/react-todoApp.png)
+![](ScreenShot/react-todoApp.png)
